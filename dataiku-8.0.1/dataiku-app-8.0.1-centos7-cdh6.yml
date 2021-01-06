@@ -1,0 +1,75 @@
+---
+apiVersion: kubedirector.hpe.com/v1beta1
+kind: KubeDirectorApp
+metadata:
+  name: dataiku
+spec:
+  label:
+    name: Dataiku 8.0.1
+    description: Dataiku 8.0.1 on centos 7.8 with CDH 6
+  distroID: dzinsouhpe/dataiku
+  version: '8.0.1'
+  configSchemaVersion: 7
+  defaultConfigPackage:
+    packageURL: file:///opt/configscripts/appconfig.tgz
+  defaultImageRepoTag: dzinsouhpe/dataiku:8.0.1-centos7-cdh6
+  services:
+  - id: design-node
+    label:
+      name: Design node
+    endpoint:
+      port: 11000
+      urlScheme: http
+      isDashboard: true
+  - id: automation-node
+    label:
+      name: Automation node
+    endpoint:
+      port: 11010
+      urlScheme: http
+      isDashboard: true
+  - id: api-node
+    label:
+      name: API node
+    endpoint:
+      port: 11020
+      urlScheme: http
+      isDashboard: true
+  - id: api-deployer
+    label:
+      name: API deployer
+    endpoint:
+      port: 11030
+      urlScheme: http
+      isDashboard: true
+  roles:
+  - id: design-node
+    cardinality: "1"
+  - id: automation-node
+    cardinality: "0+"
+  - id: api-node
+    cardinality: "0+"
+  - id: api-deployer
+    cardinality: "0+"
+  config:
+    selectedRoles:
+    - design-node
+    - automation-node
+    - api-node
+    - api-deployer
+    roleServices:
+    - roleID: design-node
+      serviceIDs:
+      - design-node
+    - roleID: automation-node
+      serviceIDs:
+      - automation-node
+    - roleID: api-node
+      serviceIDs:
+      - api-node
+    - roleID: api-deployer
+      serviceIDs:
+      - api-deployer
+  systemdRequired: false
+  defaultPersistDirs:
+  - /opt/dataiku/data
