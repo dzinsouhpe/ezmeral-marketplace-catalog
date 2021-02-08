@@ -14,9 +14,9 @@ spec:
     configmaps: 
       - 
         "dataiku-cm"
-    #clusters: 
-      #- 
-        #"some clusters"
+    clusters: 
+      - 
+        "spark245-instance"
   roles: 
     - 
       id: "design-node"
