@@ -1,0 +1,60 @@
+---
+apiVersion: "kubedirector.hpe.com/v1beta1"
+kind: "KubeDirectorCluster"
+metadata: 
+  name: "dataiku-instance"
+  namespace: "dataiku"
+spec: 
+  app: "dataiku"
+  appCatalog: "local"
+  connections: 
+    secrets: 
+      - 
+        "dataiku-secret"
+    configmaps: 
+      - 
+        "dataiku-cm"
+    #clusters: 
+      #- 
+        #"some clusters"
+  roles: 
+    - 
+      id: "design-node"
+      members: 1
+      resources: 
+        requests: 
+          memory: "4Gi"
+          cpu: "2"
+        limits: 
+          memory: "4Gi"
+          cpu: "2"
+    - 
+      id: "automation-node"
+      members: 0
+      resources: 
+        requests: 
+          memory: "4Gi"
+          cpu: "2"
+        limits: 
+          memory: "4Gi"
+          cpu: "2"
+    - 
+      id: "api-node"
+      members: 0
+      resources: 
+        requests: 
+          memory: "4Gi"
+          cpu: "2"
+        limits: 
+          memory: "4Gi"
+          cpu: "2"
+    - 
+      id: "api-deployer"
+      members: 0
+      resources: 
+        requests: 
+          memory: "4Gi"
+          cpu: "2"
+        limits: 
+          memory: "4Gi"
+          cpu: "2"
