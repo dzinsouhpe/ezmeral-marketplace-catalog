@@ -21,26 +21,32 @@ spec:
     - 
       id: "design-node"
       members: 1
+      podLabels:
+        hpecp.hpe.com/dtap: inject
       resources: 
         requests: 
-          memory: "4Gi"
+          memory: "8Gi"
           cpu: "2"
         limits: 
-          memory: "4Gi"
+          memory: "8Gi"
           cpu: "2"
     - 
       id: "automation-node"
       members: 0
+      podLabels:
+        hpecp.hpe.com/dtap: inject
       resources: 
         requests: 
-          memory: "4Gi"
+          memory: "8Gi"
           cpu: "2"
         limits: 
-          memory: "4Gi"
+          memory: "8Gi"
           cpu: "2"
     - 
       id: "api-node"
       members: 0
+      podLabels:
+        hpecp.hpe.com/dtap: inject
       resources: 
         requests: 
           memory: "4Gi"
